@@ -1,0 +1,145 @@
+\chapter{MineClus and Diversity/DiverseRank}
+\label{Chapter3}
+\lhead{Chapter 3. \emph{MineClus and Diversity/DiverseRank}}
+
+\section{MinClus}
+The approach works based on the given a random medoid p $ \in $ S, the approach transform best projected cluster containing p, to the trasnactional databases. 
+If the attribute of a record is bounded by p with respect to the width w (here, w=2), an item for that attribute is added to the corresponding itemset.
+The appraoch observe that all frequent itemsets (i.e., combinations of dimensions) with respect to minsup = $\alpha * |S|$ are candidate clusters for medoid p.
+The problem of finding the best projected cluster for a random medoid p can be transformed to the problem of finding the best itemset in a transformation of S, where goodness is defined by the $\mu$ function (refer Equation \ref{eq:1}).
+
+Instead of discovering it in an non-deterministic way, a systematic data mining algorithm on S is applied. 
+The association between the data items is identified by the frequent pattern mining algoirhtm. 
+Due to association in the data items, the frequent pattern mining approach has been exploited in projected cluter approachs.
+Recently, there is a more efficient algorithm, the FP-growth method \cite{bib8}. 
+Here, the appraoch adopt frequent pattern mining for subspace clustering.
+However, the objective is to find the frequent itemset with maximum $\mu$ value, rather than finding all frequent subspaces.
+Assume that $(I_{best})$ is the itemset with the maximum $\mu$ value found so far and let $dim(I_{best})$ and $sup(I_{best})$ be its dimensionality and support, respectively. 
+
+Let $I_{cond}$ be the current conditional pattern of the FP-growth process. Its support $sup(I_{cond})$ gives an upper bound for the supports of all patterns containing it. 
+Moreover, the dimensionality of the itemsets that contain $I_{cond}$ is at most $dim(I_{cond})+l$, where l is the number of items above the items in in the header table of the FP-Growth. 
+The $\mu$ function helps to find the strong and weak clusters. 
+Among the strong clusters, the one with highest $\mu$ score is prouced as the final cluster and the data in the other clusters are added back to the database for generation of the next clusters. 
+The process is repeated till the now data point is left in the database. 
+The final data points which are not part of any cluster is treated as outliers.
+\begin{equation}\label{eq:1}
+\mu(a, b) = a * (1/\beta) * b
+\end{equation}
+where, a is support of the frequent patter, $\beta \in (0, 1]$ reflects
+the importance of the projection, and b is the number of items in the frequent pattern.
+%\figure{}
+
+\section{Diversity/DiverseRank}
+\subsection{About Concept Hierarchies}
+A pattern contains data items. A concept hierarchy is a tree in which the data items are organized in a hierarchical manner. In this tree, all the leaf nodes are the items, the internal nodes represent the categories and the top node represents the root. The root could be a virtual node. Figure1 \iffalse(figure number) \fi is an example of the concept hierarchy.
+
+Let C be a concept hierarchy. A node in C may be an item, category or root. The height of the root node is 0. Let n be a node in C. The height of n, is denoted as h(n), is equal to the number of edges on the path from root to n.
+
+The concept hierarchies can be balanced and unbalanced. In the balanced concept hierarchy having height h has the same number of levels. The items at the given height are said to be at the same level. In an unbalanced concept hierarchy, the height of at least one of the leaf level node is different from the height of other leaf level nodes. The height of unbalanced concept hierarchy is equal to the height of the leaf level node having maximum height. In concept hierarchy C, all the lower-level nodes, except the root, are mapped to the immediate higher level nodes. We consider the concept hierarchies in which a lower level node is mapped to only one higher level node.
+
+\subsection{Diversity}
+The diversity of a pattern is based on the category of the items within it. If the items of a pattern are mapped to the same/few categories in a concept hierarchy, we consider that the pattern has low diversity. Relatively, if the items are mapped to multiple categories, we consider that the pattern has more diversity. 
+
+\subsubsection{1}
+For a given pattern diversity/diverserank is assigned based on the merging behavior in the corresponding concept hierarchy. If the pattern merges into few higher level categories quickly, it has low diversity/diverserank. Otherwise, if the pattern merges into one or a few high level categories slowly, it has relatively high diversity/diverserank value.
+
+As an example, consider the concept hierarchy in Figure 1 \iffalse(figure number)\fi. For the pattern \{a, b\} the items a and b are mapped to the next level category p. In this case, the merging occurs quickly.For the pattern \{a, d\}, the item a is mapped to category p while item d is mapped to category q . Further, both th categories p and q are mapped to the category w. We say that the pattern \{a, d\} is more diverse than the pattern \{a, b\} as the merging is relatively slow in case of \{a, d\} as compared to \{a, b\}. Consider the pattern \{a, i\} which is relatively more diverse than the pattern \{a, d\} as both items merges at the root. The merging of \{a, i\} occurs slowly as comapred to \{a, d\}
+
+\textbf{Computing the Diversity of Patterns}
+
+We explain the process of calculating diverse rank of the pattern, called DRank, proposed in [\cite{bib14}, \cite{bib15}], the balanced and unbalanced pattern as follows.
+
+We extract the projection of Concept Hierarchy for $Y$(pattern) to compute the diversity.
+
+\textbf{Projection of Concept Hierarchy for $Y (P (Y /C))$}: Let $Y$ be $P$ and $C$ be concept hierarchy. The $P (Y /C)$ is the projection of $C$ for $Y$ which contains the portion of $C$. 
+All the nodes and edges exists in the paths of the items of $Y$ to the root, along with the items and the root, are included in $P (Y /C)$. 
+The projection $P (Y /C)$ is a tree which represents a concept hierarchy concerning to the pattern $Y$.
+
+Given two patterns of the same length, different merging behavior can be realized, if we observe how the items in the patterns are mapped to higher level nodes. 
+That is, one pattern may quickly merge to few higher level items within few levels and the other patterns may merge to few higher level items by crossing more number of levels. 
+By capturing the process of merging, we define the notion of diverse rank (drank). 
+So, $drank (Y )$ is calculated by capturing how the items are merged from leaf-level to root in $P (Y/C)$. 
+It can be observed that a given item set maps from the leaf level to the root level through a merging process by crossing intermediate levels. 
+At a given level, several lower level items/categories are merged into the corresponding higher level categories.
+
+Two notions are employed to compute the diversity of pattern: Merging Factor ($MF$), Level Factor ($LF$) and Adjustment factor ($AF$).
+
+We explain about MF after presenting the notion of generalized pattern.
+
+\textbf{Generalized Pattern} $(GP (Y, l, P (Y /C)))$: Let $Y$ be a pattern, $h$ be the height of $P (Y /C)$ and $l$ be an integer.
+The $GP (Y, l, P (Y /C))$ indicates the $GP$ of $Y$ at level  $l$ in $P (Y /C)$. 
+Assume that the $GP (Y, l + 1, P (Y /C))$ is given. 
+The $GP (Y, l, P (Y /C))$ is calculated based on the $GP$ of $Y$ at level $(l + 1)$. 
+The $GP (Y, l, P (Y /C))$ is obtained by replacing every item at level $(l + 1)$ in $GP (Y, l + 1, P (Y /C))$ with its corresponding parent at the level $l$ with duplicates removed, if any.
+
+The notion of merging factor at level l is defined as follows.
+
+\textbf{Merging factor} $(MF (Y, l, P (Y /C)))$: Let $Y$ be pattern and $l$ be the level. The merging factor indicates how the items of a
+pattern merge from the level $l + 1$ to the level $l (0 ≤ l < h)$.
+If there is no change, the $MF(Y,l)$ is $1$. 
+If all items merges to one node, the $MF(X,l)$ value equals to $0$.
+So, the $MF$ value at the level $l$ is denoted by $MF(Y, l, P (Y /C))$ which is equal
+to the ratio of the number of nodes in $(GP (Y, l, P (Y /C) − 1)$ to the number of nodes in $(GP (Y, l + 1, P (Y /C) − 1)$.
+
+\begin{equation}
+    MF(Y,l,P(Y/C)) = \frac{|GP(Y,l,P(Y/C)| - 1}{|GP(Y,l+1,P(Y/C)))|-1}
+\end{equation}
+
+We now define the notion of level factor to determine the contribution of nodes at the given level.
+
+Level Factor $(LF (l, P (Y /C))$: For a given $P (Y /C)$, $h$ be the height of $P (Y /C) = {0, 1}$. 
+Let $l$ be such that $1 ≤ l ≤ (h − 1)$.
+The $LF$ value of $P (Y /C)$ at level $l$ indicates the contribution of nodes at level $l$ to $DRank$.
+We can assign equal, linear or exponential weights to each level. 
+Here, we provide a formula which assigns the weight to the level such that the weight is in proportion the level number.
+
+\begin{equation}
+LF (l, P (Y /C))=\frac{2 * (h - l)}{ h * (h - 1)}
+\end{equation}
+
+\textbf{Adjustment factor} $AF (Y, l, P (Y /C))$:Let $Y$ be pattern and $l$ be the level
+The Adjustment Factor $(AF)$ at level $l$ helps in reducing the drank by measuring the contribution of dummy edges/nodes relative to the original edges/nodes at the level $l$. 
+The $AF$ for a pattern $Y$ at a level $l$ should depend on the ratio of number of real edges formed with the children of the 
+real nodes in $P (Y /E)$ versus total number of edges formed with the children of real and dummy nodes at $l$ in $P (Y /E)$. 
+The value of $AF$ at a given height should lie between $0$ and $1$. 
+If the number of real edges is equals to zero, $AF$ is $0$.
+If the pattern at the given level does not contain dummy nodes/edges, the value of $AF$ becomes $1$.
+Note that the $AF$ value is not defined at the leaf level nodes as children do not exist. 
+The $AF$ for $Y$ at level $l$ is denoted as $AF (Y, l, P (Y /E))$ and is calculated by the following formula.
+The value for $AF$ is less than $1$ when the pattern is unbalanced otherwise it returns $1$.
+
+\begin{equation}
+    AF (Y, l, P (Y /C)) = \frac{\# of Real Edges of U P (Y, l, P (Y /E)) }{ \# of T otal Edges of U P (Y, l, P (Y /E))}
+\end{equation}
+
+where numerator is the number of edges formed with the children of the real nodes and denominator is the number of edges formed with the children of both real and dummy nodes at the level $l$ in $P (Y /E)$.
+
+The approach to compute drank of $Y$ is as follows. 
+We convert the concept hierarchy to extended concept hierarchy called, "extended concept hierarchy" by adding dummy nodes and edges. 
+Next, we adjust the drank in accordance with the number of dummy nodes and edges using the notion called adjustment factor. 
+So, the drank of $Y$ is relative to the drank of the same pattern computed by considering all of its items are at the leaf level of the extended concept hierarchy. 
+The dummy nodes and edges are added when the pattern is unbalanced.
+
+\textbf{Diverse rank of a frequent pattern} $Y (drank(Y))$: Let $Y$ be the pattern and $C$ be the unbalanced concept hierarchy
+of height $h$. 
+The drank of $Y$ , denoted by $drank(Y )$, is given by the following equation:
+
+\begin{equation}
+    drank(Y, C) = [M F (Y, l, P (Y /E)) ∗ AF (Y, l, P (Y /E))] * LF (l, P (Y /E))     
+\end{equation}
+
+where, $h$ is the height of the $P (P/E)$, $E$ is the extended unbalanced concept hierarchy, $MF (Y, l, P (Y /E))$ is the $MF$ 
+of $Y$ at level $l$, $LF (l, P (Y /E))$ is the $LF$ at level $l$ and $AF (Y, l, P (Y /E))$ is the $AF$ of $Y$ at level $l$.
+
+\subsubsection{2}
+For a given pattern diversity/diverserank is assigned based on difference in number of edges in the sub tree of corresponding concept hierarchy which only contain those leaves(items) which are present in the pattern (e') and minimum number of edges needed to form a tree of height same as the corresponding concept hierarchy  number of leaf nodes is equal to number of distinct items in the pattern(e). 
+To normalize it we divide it with the difference of number of edges if all the pattern merges at root(E) and  minimum number of edges needed to form a tree of height same as the     corresponding concept hierarchy  number of leaf nodes is equal to number of distinct items in the pattern(e)
+
+\begin{equation}\label{eq:2}
+    dr(Y,C)=\frac{e'-e}{E-e}
+\end{equation}
+
+As an example, consider the concept hierarchy in Figure 1 \iffalse(figure number)\fi. \\ 
+For the pattern \{a,b\}, E=6, e'=4 and e=4. So diversty=0.0 \\
+For the pattern \{a,d\}, E=6, e'=5 and e=4. So diversty=0.5 \\
+For the pattern \{a,i\}, E=6, e'=6 and e=4. So diversty=1.0

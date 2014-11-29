@@ -1,0 +1,35 @@
+\contentsline {chapter}{CERTIFICATE}{ii}{dummy.1}
+\vspace {1em}
+\contentsline {chapter}{Abstract}{iv}{dummy.2}
+\vspace {1em}
+\contentsline {chapter}{Acknowledgements}{v}{dummy.3}
+\vspace {1em}
+\vspace {2em}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.5}
+\contentsline {section}{\numberline {1.1}Issues with Clustering Techniques}{1}{section.6}
+\contentsline {section}{\numberline {1.2}Available Algorithms}{2}{section.7}
+\contentsline {section}{\numberline {1.3}Our Approach}{2}{section.8}
+\contentsline {chapter}{\numberline {2}Analysis Of Existing Algorithms}{3}{chapter.9}
+\contentsline {section}{\numberline {2.1}CLIQUE, PROCLUS and ORCLUS}{3}{section.10}
+\contentsline {section}{\numberline {2.2}DOC}{3}{section.11}
+\contentsline {section}{\numberline {2.3}Frequent Pattern-based Algorithm/MineClus}{4}{section.12}
+\contentsline {chapter}{\numberline {3}MineClus and Diversity/DiverseRank}{5}{chapter.13}
+\contentsline {section}{\numberline {3.1}MinClus}{5}{section.14}
+\contentsline {section}{\numberline {3.2}Diversity/DiverseRank}{6}{section.16}
+\contentsline {subsection}{\numberline {3.2.1}About Concept Hierarchies}{6}{subsection.17}
+\contentsline {subsection}{\numberline {3.2.2}Diversity}{6}{subsection.18}
+\contentsline {subsubsection}{\numberline {3.2.2.1}1}{7}{subsubsection.19}
+\contentsline {subsubsection}{\numberline {3.2.2.2}2}{9}{subsubsection.24}
+\contentsline {chapter}{\numberline {4}Experiments}{11}{chapter.26}
+\contentsline {section}{\numberline {4.1}Work Done}{11}{section.27}
+\contentsline {section}{\numberline {4.2}Evaluation Metric}{11}{section.28}
+\contentsline {section}{\numberline {4.3}Results with Diversity1(original approach)}{12}{section.29}
+\contentsline {subsection}{\numberline {4.3.1}Without merging}{12}{subsection.30}
+\contentsline {subsection}{\numberline {4.3.2}With merging}{12}{subsection.34}
+\contentsline {section}{\numberline {4.4}Results with Diversity2(improved approach)}{12}{section.38}
+\contentsline {subsection}{\numberline {4.4.1}Without merging}{12}{subsection.39}
+\contentsline {subsection}{\numberline {4.4.2}With merging}{12}{subsection.43}
+\vspace {2em}
+\contentsline {chapter}{\numberline {A}Appendix Title Here}{16}{appendix.47}
+\vspace {2em}
+\contentsline {chapter}{Bibliography}{17}{dummy.48}

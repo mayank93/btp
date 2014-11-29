@@ -1,0 +1,246 @@
+\chapter{Experiments}
+\label{Chapter5}
+\lhead{Chapter 5. \emph{Experiments}}
+
+\section{Work Done}
+\begin{itemize}
+	\item We studied relevant literature, as mentioned in the references
+	\item We understood and implemented the Apriori Algorithm and FP-Growth algorithms in Python
+	\item We understood and implemented both the implementions of Diversity in Python
+	\item We implemented the entire MinClus clustering suite with support for merging
+	\item We proposed and implemented six Outlier detection/Cluster refining methods
+	\item We conducted extensive testing of our approach and that of the original MinClus approach, results of which are presented below.
+\end{itemize}
+
+\section{Evaluation Metric}
+We view Clustering as a series of decisions - for each pair of items in the dataset, whether to put them in the same cluster or in a different cluster.
+
+A true positive (TP) decision assigns two
+similar documents to the same cluster, a true negative (TN)
+decision assigns two dissimilar documents to different clus-
+ters. There are two types of errors we can commit. A (FP)
+decision assigns two dissimilar documents to the same clus-
+ter. A (FN) decision assigns two similar documents to dif-
+ferent clusters.
+
+\section{Results with Diversity1(original approach)}
+\subsection{Without merging}
+
+\begin{table}[H]
+\caption{Accuracy} 
+\begin{center}
+		\begin{tabular}{ | l | l | l | l |}
+				\hline
+
+				\textbf{Dataset} & \textbf{MinClus} & \textbf{DSRD} & \textbf{Binning} \\ \hline
+                \textbf{Iris} & 82.20 & 85.58 & 85.58 \\ \hline
+                \textbf{Seed} & 79.11 & 78.96 & 78.96 \\ \hline
+                \textbf{Zoo} & 88.33 & 88.55 & 81.18  \\ \hline
+                \textbf{Water} & 60.23 & 62.28 & 60.24  \\ \hline
+		\end{tabular}
+\end{center}
+\label{table:acc1}
+\end{table}
+
+
+
+\begin{table}[H]
+\caption{Precision} 
+\begin{center}
+		\begin{tabular}{ | l | l | l | l |}
+				\hline
+
+				\textbf{Dataset} & \textbf{MinClus} & \textbf{DSRD} & \textbf{Binning} \\ \hline
+
+				\textbf{Iris} & 97.50 & 98.28 & 98.28 \\ \hline
+				\textbf{Seed} & 90.62 & 89.03 & 89.03 \\ \hline
+				\textbf{Zoo} & 94.02 & 91.28 & 88.94  \\ \hline
+				\textbf{Water} & 36.32 & 39.07 & 36.60 \\ \hline
+		\end{tabular}
+\end{center}
+\label{table:pre1}
+\end{table}
+
+
+\begin{table}[H]
+\caption{Recall} 
+\begin{center}
+		\begin{tabular}{ | l | l | l | l |}
+				\hline
+
+				\textbf{Dataset} & \textbf{MinClus} & \textbf{DSRD} & \textbf{Binning} \\ \hline
+
+				\textbf{Iris} &  47.84 & 57.76 & 57.76 \\ \hline
+				\textbf{Seed} & 41.65 & 42.05 & 42.05 \\ \hline
+				\textbf{Zoo} & 55.03 & 57.96 & 24.89  \\ \hline
+				\textbf{Water} & 19.61 & 15.79 & 20.09 \\ \hline
+		\end{tabular}
+\end{center}
+\label{table:rec1}
+\end{table}
+
+\subsection{With merging}
+
+\begin{table}[H]
+\caption{Accuracy} 
+\begin{center}
+		\begin{tabular}{ | l | l | l | l |}
+				\hline
+
+				\textbf{Dataset} & \textbf{MinClus} & \textbf{DSRD} & \textbf{Binning} \\ \hline
+                \textbf{Iris} & 82.78 & 91.80 & 91.80 \\ \hline
+                \textbf{Seed} & 82.51 & 83.21 & 83.21 \\ \hline
+                \textbf{Zoo} & 91.02 & 94.65 & 90.47  \\ \hline
+                \textbf{Water} & 60.29 & 59.80 & 60.50  \\ \hline
+		\end{tabular}
+\end{center}
+\label{table:acc2}
+\end{table}
+
+
+
+\begin{table}[H]
+\caption{Precision} 
+\begin{center}
+		\begin{tabular}{ | l | l | l | l |}
+				\hline
+
+				\textbf{Dataset} & \textbf{MinClus} & \textbf{DSRD} & \textbf{Binning} \\ \hline
+
+				\textbf{Iris} & 75.89 & 87.38 & 87.38 \\ \hline
+				\textbf{Seed} & 78.72 & 79.86 & 79.86 \\ \hline
+				\textbf{Zoo}  & 90.95 & 90.02 & 81.06 \\ \hline
+				\textbf{Water}& 36.94 & 36.70 & 39.38 \\ \hline
+		\end{tabular}
+\end{center}
+\label{table:pre2}
+\end{table}
+
+\begin{table}[H]
+\caption{Recall} 
+\begin{center}
+		\begin{tabular}{ | l | l | l | l |}
+				\hline
+
+				\textbf{Dataset} & \textbf{MinClus} & \textbf{DSRD} & \textbf{Binning} \\ \hline
+
+				\textbf{Iris}  & 70.85 & 88.11 & 88.11 \\ \hline
+				\textbf{Seed}  & 65.13 & 66.35 & 66.35  \\ \hline
+				\textbf{Zoo}   & 69.61 & 87.45 & 78.82  \\ \hline
+				\textbf{Water} & 20.63 & 22.06 & 25.90 \\ \hline
+		\end{tabular}
+\end{center}
+\label{table:rec2}
+\end{table}
+
+
+\section{Results with Diversity2(improved approach)}
+\subsection{Without merging}
+
+\begin{table}[H]
+\caption{Accuracy} 
+\begin{center}
+		\begin{tabular}{ | l | l | l | l |}
+				\hline
+
+				\textbf{Dataset} & \textbf{MinClus} & \textbf{DSRD} & \textbf{Binning} \\ \hline
+                \textbf{Iris} & 82.20 & 82.43 & 77.54 \\ \hline
+                \textbf{Seed} & 79.11 & 79.96 & 75.06 \\ \hline
+                \textbf{Zoo} & 88.33 & 88.33 & 85.65  \\ \hline
+                \textbf{Water} & 60.23 & 63.35 & 60.27  \\ \hline
+		\end{tabular}
+\end{center}
+\label{table:acc1}
+\end{table}
+
+
+
+\begin{table}[H]
+\caption{Precision} 
+\begin{center}
+		\begin{tabular}{ | l | l | l | l |}
+				\hline
+
+				\textbf{Dataset} & \textbf{MinClus} & \textbf{DSRD} & \textbf{Binning} \\ \hline
+
+                \textbf{Iris} & 97.50 & 98.74 & 98.34 \\ \hline
+                \textbf{Seed} & 90.62 & 95.76 & 91.00 \\ \hline
+                \textbf{Zoo} & 94.02 & 94.02 & 96.79  \\ \hline
+                \textbf{Water} & 36.32 & 39.96 & 36.37 \\ \hline
+		\end{tabular}
+\end{center}
+\label{table:pre1}
+\end{table}
+
+
+\begin{table}[H]
+\caption{Recall} 
+\begin{center}
+		\begin{tabular}{ | l | l | l | l |}
+				\hline
+
+				\textbf{Dataset} & \textbf{MinClus} & \textbf{DSRD} & \textbf{Binning} \\ \hline
+
+                \textbf{Iris} &  47.84 & 47.89 & 33.17 \\ \hline
+                \textbf{Seed} & 41.65 & 41.74 & 27.93 \\ \hline
+                \textbf{Zoo} & 55.03 & 55.03 & 41.75  \\ \hline
+                \textbf{Water} & 19.61 & 11.43 & 19.53 \\ \hline
+		\end{tabular}
+\end{center}
+\label{table:rec1}
+\end{table}
+
+\subsection{With merging}
+
+\begin{table}[H]
+\caption{Accuracy} 
+\begin{center}
+		\begin{tabular}{ | l | l | l | l |}
+				\hline
+
+				\textbf{Dataset} & \textbf{MinClus} & \textbf{DSRD} & \textbf{Binning} \\ \hline
+                \textbf{Iris} & 82.78 & 90.94 & 93.24 \\ \hline
+                \textbf{Seed} & 82.51 & 85.00 & 83.41 \\ \hline
+                \textbf{Zoo} & 91.02 & 91.96 & 95.78  \\ \hline
+                \textbf{Water} & 60.29 & 62.05 & 60.18  \\ \hline
+		\end{tabular}
+\end{center}
+\label{table:acc2}
+\end{table}
+
+
+
+\begin{table}[H]
+\caption{Precision} 
+\begin{center}
+		\begin{tabular}{ | l | l | l | l |}
+				\hline
+
+				\textbf{Dataset} & \textbf{MinClus} & \textbf{DSRD} & \textbf{Binning} \\ \hline
+
+                \textbf{Iris} & 75.89 & 86.21 & 89.82 \\ \hline
+                \textbf{Seed} & 78.72 & 77.50 & 80.45 \\ \hline
+                \textbf{Zoo}  & 90.95 & 86.58 & 93.10 \\ \hline
+                \textbf{Water}& 36.94 & 38.86 & 36.71 \\ \hline
+		\end{tabular}
+\end{center}
+\label{table:pre2}
+\end{table}
+
+\begin{table}[H]
+\caption{Recall} 
+\begin{center}
+		\begin{tabular}{ | l | l | l | l |}
+				\hline
+
+				\textbf{Dataset} & \textbf{MinClus} & \textbf{DSRD} & \textbf{Binning} \\ \hline
+
+                \textbf{Iris}  & 70.85 & 86.69 & 89.92 \\ \hline
+                \textbf{Seed}  & 65.13 & 77.51 & 66.38 \\ \hline
+                \textbf{Zoo}   & 69.61 & 78.82 & 89.08 \\ \hline
+                \textbf{Water} & 20.63 & 16.57 & 20.59 \\ \hline
+		\end{tabular}
+\end{center}
+\label{table:rec2}
+\end{table}
+

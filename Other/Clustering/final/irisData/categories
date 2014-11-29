@@ -1,0 +1,12 @@
+root|small|sepal-width-length|sepal_wid_low
+root|small|sepal-width-length|sepal_len_low
+root|small|petal-width-length|petal_wid_low
+root|small|petal-width-length|petal_len_low
+root|medium|sepal-width-length|sepal_wid_mid
+root|medium|sepal-width-length|sepal_len_mid
+root|medium|petal-width-length|petal_len_mid
+root|medium|petal-width-length|petal_wid_mid
+root|large|sepal-width-length|sepal_wid_high
+root|large|sepal-width-length|sepal_len_high
+root|large|petal-width-length|petal_wid_high
+root|large|petal-width-length|petal_len_high

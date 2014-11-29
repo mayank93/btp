@@ -1,0 +1,49 @@
+\chapter{Proposed Approach}
+\label{Chapter4}
+\lhead{Chapter 4. \emph{Proposed Approach}}
+
+Our approach uses Diversity to refine each cluster as it is formed. The MineClus algorithm generates clusters iteratively using a \emph{Frequent Pattern} with high support.
+Right after a cluster is formed, we try to validate the membership of each element in the newly formed cluster. Any element that is deemed to be different from the rest of the cluster is put back into the dataset, and the MineClus algorithm will consider it while forming newer clusters in the future. Hence, an element is added to the cluster which is best suited for it. If a suitable cluster cannot be found for the element, it is listed as a singleton cluster.
+
+The rationale and key idea behind using diversity is that all elements of the cluster will have similar diversity values with respect to the Concept Hierarchy. The concept hierarchy captures domain knowledge of the dataset and represents it in a tree-like form.
+Diversity is able to identify how different a data point
+is from other points in the cluster. If the data point
+is too different (exceeding a threshold), it clearly does not belong to the current cluster and is labelled as a non-member.
+All non-members are put back into the list of data points that are yet to be clustered.
+
+For the purposes of refining, let us consider a cluster \(C\) containing \(n\) data points \(\{o_1, o_2, \dots, o_n \}\). We use diversity to determine the membership of \(o_i\). The array containing the diversity values for each of the cluster elements is denoted as \(\{d_1, d_2, \dots, d_n\}\). Two approaches for this are proposed.
+
+\section{Diverse Square-Root Distance}
+
+We define a measure called \emph{Diverse Square Root Distance (dsrd(k))} as:
+
+\begin{equation}
+dsrd(k) = \sqrt{\sum_{j=1}^{n} {(d_k - d_j)}^2}
+\end{equation}
+
+\(dsrd(k)\) represents the distance of the \(k^{th}\) element from the rest of the cluster.
+
+\begin{algorithm}[H]
+ \KwData{\(C, D, \delta\)}
+$C$ is the current cluster\;
+$D$ contains elements to be clustered\;
+$\delta$ is a user-defined threshold\;
+ \KwResult{Refined $C$}
+ %\While{not at end of this document}{
+\For{$i \leftarrow 1$ to $n$}{
+  %read current\;
+  %\eIf{understand}{
+   %go to next section\;
+   %current section becomes this one\;
+   %}{
+   %go back to the beginning of current section\;
+  %}
+\eIf{$dsrd(i) > \delta$} {
+	Remove $i^{th}$ element from $C$\;
+}{
+	Keep $i^{th}$ element in $C$\;
+}
+ }
+return $C$\;
+ \caption{How to write algorithms}
+\end{algorithm}

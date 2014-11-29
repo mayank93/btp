@@ -1,0 +1,46 @@
+\chapter{Analysis Of Existing Algorithms}
+\label{Chapter2}
+\lhead{Chapter 2. \emph{Analysis Of Existing Algorithms}}
+
+\section{CLIQUE, PROCLUS and ORCLUS}
+
+One of the first algorithms in the area of projected clustering
+algorithms is CLIQUE \cite{bib3}. CLIQUE finds the dense regions
+(clusters) in a level-wise manner, based on the Apriori
+principle. However, this algorithm does not scale well with
+data dimensionality. In addition, the formed clusters have
+large overlap, and this may not generate clear disjoint partitions. PROCLUS\cite{bib1} and ORCLUS\cite{bib2} employ alternative
+techniques. They are much faster than CLIQUE and they
+can discover disjoint clusters. In PROCLUS, the dimensions
+relevant to each cluster are selected from the original set of
+attributes. ORCLUS is more general and can select relevant attributes from the set of arbitrary directed orthogonal
+vectors. PROCLUS fails to identify clusters with large difference in size and requires their dimensionality to be in a
+predefined range. ORCLUS may discover clusters that are
+hard to interpret.
+
+\section{DOC}
+
+DOC \cite{bib12} is a density-based algorithm that iteratively discovers projected clusters in a data set. DOC discovers one
+cluster at a time. At each step, it tries to guess a good
+medoid for the next cluster to be discovered. It repeatedly
+picks a random point from the database and attempts to
+discover the cluster centered at random point. Among all
+discovered clusters, the cluster with the highest quality is selected. The process repeated for number of random points.
+
+\section{Frequent Pattern-based Algorithm/MineClus}
+
+The frequent pattern mining\cite{bib7} is one of the interesting
+algorithms in data mining. The frequent itemset mining
+problem was first proposed in\cite{bib4}. The frequent patterns
+are generated from the transactional databases for a given
+minsup. Subsequently, an efficient approach was proposed
+in FP-growth\cite{bib8} to generate the frequent patterns without
+generating the candidate items. In\cite{bib18, bib19}, a projected clustering algorithm was proposed. The algorithm iteratively
+produce one cluster at a time by exploiting the frequent pattern mining approach. The top supported frequent patterns
+are employed to find the item sets to generate the clusters.
+A strength function is defined to arrange the clusters in to
+strong and weak clusters. The strong clusters are produced
+as an output and the objects in the weak clusters are added
+by to the database. The process is iterated till all the objects
+are grouped into the clusters. The FP-growth approach has
+employed to generate the frequent patterns.

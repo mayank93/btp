@@ -1,0 +1,34 @@
+from treeLib import *
+from diverseRankLib import *
+
+if __name__ == "__main__":
+
+	# create the tree
+	tree = Tree()
+	root=tree.root
+	f=open('test.csv','r')
+	for line in f:
+        	if len(line)>2:
+			line=line.strip('\n\r\t ').split('|')
+			root=tree.insert(root,line)
+	codeDictUb={}
+	codeDictB={}
+
+#	tree.printTree(root)
+	height=tree.treeHeight(root,0)
+
+	tree.itemToCodeDict(root,codeDictUb)
+
+	root=tree.unbalancedToBalanced(root,height)
+
+	tree.itemToCodeDict(root,codeDictB)
+#	tree.printTree(root)
+
+#	print codeDictB
+#	print codeDictUb
+
+	x=['a','d','g','q']
+
+	print diverseRank(x,codeDictB,codeDictUb,height-1)
+
+	#print diverseRank(['0+0+0+0+0','0+0+1+0+0','0+0+2+0+0','0+0+0+4+0'],['0+0+0+0','0+0+1+0','0+0+2+0','0+0+0+4+0'],height-1)
